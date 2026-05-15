@@ -378,9 +378,22 @@ async function connectWallet() {
         method: 'eth_requestAccounts'
       });
 
-    console.log("Connected:", accounts[0]);
+    const wallet = accounts[0];
 
-    alert("Wallet connected: " + accounts[0]);
+    console.log("Connected:", wallet);
+
+    // AMBIL BUTTON
+    const btn =
+      document.querySelector('.dice-roll-btn');
+
+    // SHORT ADDRESS
+    const shortAddress =
+      wallet.slice(0,6) +
+      "..." +
+      wallet.slice(-4);
+
+    // UBAH TEXT BUTTON
+    btn.innerText = shortAddress;
 
   } catch (err) {
 
@@ -388,7 +401,6 @@ async function connectWallet() {
 
   }
 }
-
 </script>
 </body>
 </html>
