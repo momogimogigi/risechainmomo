@@ -364,6 +364,29 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.1/dist/ethers.umd.min.js"></script>
 <script>
+
+let signer;
+let contract;
+
+const CONTRACT_ADDRESS =
+  "0x5d589EAB91ccd1918A81F13289D3d7f91Cc44F10";
+
+const ABI = [
+  {
+    "inputs": [],
+    "name": "rollDice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "requestId",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];
+
 async function connectWallet() {
 
   if (!window.ethereum) {
@@ -380,20 +403,24 @@ async function connectWallet() {
 
     const wallet = accounts[0];
 
+    // PROVIDER
+    const provider =
+      new ethers.BrowserProvider(window.ethereum);
+
+    // SIGNER
+    signer =
+      await provider.getSigner();
+
     console.log("Connected:", wallet);
 
-    // AMBIL BUTTON
     const btn =
       document.querySelector('.dice-roll-btn');
 
-    // SHORT ADDRESS
-    const shortAddress =
-      wallet.slice(0,6) +
-      "..." +
-      wallet.slice(-4);
+    // UBAH BUTTON
+    btn.innerText = "Roll Dice →";
 
-    // UBAH TEXT BUTTON
-    btn.innerText = shortAddress;
+    // GANTI FUNCTION BUTTON
+    btn.onclick = rollDice;
 
   } catch (err) {
 
@@ -401,6 +428,59 @@ async function connectWallet() {
 
   }
 }
+
+async function rollDice() {
+
+  try {
+
+    const btn =
+      document.querySelector('.dice-roll-btn');
+
+    const result =
+      document.getElementById('dice-result');
+
+    btn.disabled = true;
+
+    result.innerHTML =
+      "Sending transaction...";
+
+    // CONNECT CONTRACT
+    contract =
+      new ethers.Contract(
+        CONTRACT_ADDRESS,
+        ABI,
+        signer
+      );
+
+    // SEND TX
+    const tx =
+      await contract.rollDice();
+
+    console.log(tx);
+
+    result.innerHTML =
+      "TX Sent:<br>" + tx.hash;
+
+    // WAIT CONFIRM
+    await tx.wait();
+
+    result.innerHTML =
+      "Transaction Confirmed ✅";
+
+    btn.disabled = false;
+
+  } catch (err) {
+
+    console.error(err);
+
+    document.getElementById(
+      'dice-result'
+    ).innerHTML =
+      "Transaction failed";
+
+  }
+}
+
 </script>
 </body>
 </html>
