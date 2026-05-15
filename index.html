@@ -85,7 +85,14 @@
 
   /* DICE GAME SECTION */
   #dice { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .dice-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+ .dice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
+  gap: 4rem;
+  align-items: center;
+}
+ 
   .dice-info h2 { font-size: clamp(2rem,4vw,3.2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: .8rem; line-height: 1.1; text-transform: uppercase; font-family: var(--font-heading); }
   .dice-info p { color: var(--text2); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400; }
   .dice-tag { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
@@ -93,7 +100,22 @@
   .dice-specs { display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem; }
   .dice-spec { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: .72rem; color: var(--text2); letter-spacing: .02em; }
   .dice-spec::before { content: '→'; color: var(--accent); }
-  .dice-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 2px; padding: 2.5rem; position: relative; overflow: hidden; }
+
+
+
+.dice-card { 
+  background: var(--surface); 
+  border: 1px solid var(--border2); 
+  border-radius: 2px; 
+  padding: 2.5rem; 
+  position: relative; 
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 520px;
+}
+
+ 
   .dice-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
   .dice-display { font-size: 6rem; text-align: center; margin-bottom: 1.5rem; transition: transform .15s; line-height: 1; }
   .dice-result { font-family: var(--font-mono); font-size: .75rem; color: var(--text2); text-align: center; margin-bottom: 1.5rem; min-height: 1.2rem; letter-spacing: .02em; }
@@ -123,24 +145,88 @@
   .footer-links a:hover { color: var(--text); }
   .footer-copy { font-family: var(--font-mono); font-size: .65rem; color: var(--text3); font-weight: 400; }
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.2rem; }
-    .nav-links li:not(:last-child) { display: none; }
-    .stats-bar { grid-template-columns: repeat(2,1fr); }
-    .feature-grid { grid-template-columns: 1fr; }
-    .market-table-head { grid-template-columns: 1.8fr 1.2fr 1.2fr; }
-    .market-table-head span:nth-child(4) { display: none; }
-    .market-row { grid-template-columns: 1.8fr 1.2fr 1.2fr; }
-    .market-row .mkt-mm { display: none; }
-    .cta-inner { padding: 2.5rem 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
-    .dice-layout { grid-template-columns: 1fr; gap: 2rem; }
+.dice-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.dice-layout > div:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+
+  nav {
+    padding: 1rem 1.2rem;
   }
+
+  .nav-links li:not(:last-child) {
+    display: none;
+  }
+
+  .stats-bar {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-table-head {
+    grid-template-columns: 1.8fr 1.2fr 1.2fr;
+  }
+
+  .market-table-head span:nth-child(4) {
+    display: none;
+  }
+
+  .market-row {
+    grid-template-columns: 1.8fr 1.2fr 1.2fr;
+  }
+
+  .market-row .mkt-mm {
+    display: none;
+  }
+
+  .cta-inner {
+    padding: 2.5rem 1.5rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dice-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .dice-layout > div:last-child {
+    justify-content: center;
+  }
+
+  .dice-card {
+    max-width: 100%;
+  }
+
+}
 </style>
 </head>
 <body>
 
+
+
+ 
 <nav>
   <a href="#" class="nav-logo"><div class="logo-dot"></div>RISE</a>
   <ul class="nav-links">
