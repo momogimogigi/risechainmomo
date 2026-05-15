@@ -224,17 +224,41 @@
 <section id="dice">
   <div class="section-inner">
     <div class="dice-layout">
+     
       <div class="dice-info">
-        <div class="dice-tag">VRF Demo</div>
-        <h2 class="section-title">Fast VRF<br>on RISE</h2>
-        <p>Verifiable randomness delivered in 3–5ms via RISE's Shred architecture. This dice game runs on a smart contract deployed on RISE Testnet — the same infrastructure powering real applications.</p>
-        <div class="dice-specs">
-          <div class="dice-spec">Cryptographically secure randomness</div>
-          <div class="dice-spec">3–5ms delivery via WebSocket</div>
-          <div class="dice-spec">Deployed on RISE Testnet (Chain ID: 11155931)</div>
-          <div class="dice-spec">Audited by Spearbit & yAudit</div>
-        </div>
-      </div>
+
+<div class="dice-tag">Onchain Demo</div>
+
+<h2 class="section-title">
+  Onchain Dice<br>on RISE
+</h2>
+
+<p>
+  A minimal onchain dice demo running on RISE Testnet.
+  Every roll sends a real transaction through RISE's
+  ultra-low latency infrastructure and confirms directly
+  onchain using an EVM smart contract.
+</p>
+
+<div class="dice-specs">
+  <div class="dice-spec">
+    Real onchain transaction execution
+  </div>
+
+  <div class="dice-spec">
+    Built with ethers.js + RISE EVM
+  </div>
+
+  <div class="dice-spec">
+    Deployed on RISE Testnet (Chain ID: 11155931)
+  </div>
+
+  <div class="dice-spec">
+    Wallet connection via Browser Extension
+  </div>
+</div>
+
+     
       <div class="dice-card">
         <div class="dice-display" id="dice-display">🎲</div>
         <div class="dice-result" id="dice-result">Press roll to request VRF randomness</div>
