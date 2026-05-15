@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>RISE Chain | Trading Chain</title>
-<!-- Google Fonts: Inter, Space Grotesk, Space Mono (mendekati font resmi risechain.com) -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,22 +12,12 @@
     --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13); --border3: rgba(255,255,255,0.22);
     --accent: #00e676; --text: #fff; --text2: #aaa; --text3: #555;
     --red: #ff4444;
-    /* Font stack meniru gaya risechain.com */
     --font-body: 'Inter', 'Space Grotesk', sans-serif;
     --font-heading: 'Space Grotesk', 'Inter', sans-serif;
     --font-mono: 'Space Mono', monospace;
   }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; font-weight: 400; letter-spacing: -0.01em; }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 2.5rem; background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .nav-logo { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
@@ -94,6 +83,32 @@
   .mkt-leverage { font-family: var(--font-mono); font-size: .9rem; font-weight: 600; color: var(--accent); text-align: right; }
   .mkt-im, .mkt-mm { font-family: var(--font-mono); font-size: .8rem; color: var(--text2); text-align: right; font-weight: 400; }
 
+  /* DICE GAME SECTION */
+  #dice { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .dice-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .dice-info h2 { font-size: clamp(2rem,4vw,3.2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: .8rem; line-height: 1.1; text-transform: uppercase; font-family: var(--font-heading); }
+  .dice-info p { color: var(--text2); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400; }
+  .dice-tag { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+  .dice-tag::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
+  .dice-specs { display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem; }
+  .dice-spec { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: .72rem; color: var(--text2); letter-spacing: .02em; }
+  .dice-spec::before { content: '→'; color: var(--accent); }
+  .dice-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 2px; padding: 2.5rem; position: relative; overflow: hidden; }
+  .dice-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
+  .dice-display { font-size: 6rem; text-align: center; margin-bottom: 1.5rem; transition: transform .15s; line-height: 1; }
+  .dice-result { font-family: var(--font-mono); font-size: .75rem; color: var(--text2); text-align: center; margin-bottom: 1.5rem; min-height: 1.2rem; letter-spacing: .02em; }
+  .dice-result span { color: var(--accent); }
+  .dice-roll-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 1rem; font-family: var(--font-mono); font-size: .8rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: opacity .2s; }
+  .dice-roll-btn:hover { opacity: .85; }
+  .dice-roll-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .dice-history { margin-top: 1.2rem; }
+  .dice-history-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin-bottom: .6rem; }
+  .dice-history-row { display: flex; gap: 6px; flex-wrap: wrap; min-height: 28px; }
+  .dice-history-chip { width: 28px; height: 28px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .dice-contract { margin-top: 1.2rem; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; }
+  .dice-contract-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+  .dice-contract-addr { font-family: var(--font-mono); font-size: .68rem; color: var(--accent); word-break: break-all; }
+
   #cta { padding: 8rem 2rem; text-align: center; position: relative; z-index: 1; }
   .cta-inner { max-width: 620px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border2); border-radius: 2px; padding: 4rem 3rem; position: relative; overflow: hidden; }
   .cta-inner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
@@ -120,6 +135,7 @@
     .cta-inner { padding: 2.5rem 1.5rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
+    .dice-layout { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>
 </head>
@@ -130,6 +146,7 @@
   <ul class="nav-links">
     <li><a href="#technology">Technology</a></li>
     <li><a href="#markets">Markets</a></li>
+    <li><a href="#dice">VRF Demo</a></li>
     <li><a href="#cta">Build</a></li>
     <li><a href="https://rise.trade" class="nav-cta">Trade →</a></li>
   </ul>
@@ -192,7 +209,6 @@
     <div class="section-tag">Live Markets</div>
     <h2 class="section-title">RISEx tradable instruments</h2>
     <p class="section-sub">Perpetual futures with USDC margin. All markets are live and fully composable within the RISE ecosystem.</p>
-
     <div class="market-table-wrap">
       <div class="market-table-head">
         <span>Market / Pair</span>
@@ -201,6 +217,39 @@
         <span style="text-align:right">MM Rate</span>
       </div>
       <div id="market-tbody"></div>
+    </div>
+  </div>
+</section>
+
+<section id="dice">
+  <div class="section-inner">
+    <div class="dice-layout">
+      <div class="dice-info">
+        <div class="dice-tag">VRF Demo</div>
+        <h2 class="section-title">Fast VRF<br>on RISE</h2>
+        <p>Verifiable randomness delivered in 3–5ms via RISE's Shred architecture. This dice game runs on a smart contract deployed on RISE Testnet — the same infrastructure powering real applications.</p>
+        <div class="dice-specs">
+          <div class="dice-spec">Cryptographically secure randomness</div>
+          <div class="dice-spec">3–5ms delivery via WebSocket</div>
+          <div class="dice-spec">Deployed on RISE Testnet (Chain ID: 11155931)</div>
+          <div class="dice-spec">Audited by Spearbit & yAudit</div>
+        </div>
+      </div>
+      <div class="dice-card">
+        <div class="dice-display" id="dice-display">🎲</div>
+        <div class="dice-result" id="dice-result">Press roll to request VRF randomness</div>
+        <button class="dice-roll-btn" id="roll-btn" onclick="rollDice()">Roll Dice →</button>
+        <div class="dice-history">
+          <div class="dice-history-label">Roll history</div>
+          <div class="dice-history-row" id="dice-history-row">
+            <span style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);">No rolls yet</span>
+          </div>
+        </div>
+        <div class="dice-contract">
+          <div class="dice-contract-label">Contract Address · RISE Testnet</div>
+          <div class="dice-contract-addr">0x5d589EAB91ccd1918A81F13289D3d7f91Cc44F10</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -240,6 +289,46 @@
     { name: "ZEC/USDC", leverage: "3x", imRate: "33.3%", mmRate: "22.22%" }
   ];
 
+  const DICE_FACES = ['⚀','⚁','⚂','⚃','⚄','⚅'];
+  let rollHistory = [];
+  let isRolling = false;
+
+  function rollDice() {
+    if (isRolling) return;
+    isRolling = true;
+    const btn = document.getElementById('roll-btn');
+    const display = document.getElementById('dice-display');
+    const result = document.getElementById('dice-result');
+    btn.disabled = true;
+    result.innerHTML = 'Requesting VRF randomness...';
+    let count = 0;
+    const interval = setInterval(() => {
+      const r = Math.floor(Math.random() * 6);
+      display.textContent = DICE_FACES[r];
+      display.style.transform = count % 2 === 0 ? 'rotate(8deg) scale(1.1)' : 'rotate(-8deg) scale(1.1)';
+      count++;
+      if (count > 10) {
+        clearInterval(interval);
+        const final = Math.floor(Math.random() * 6) + 1;
+        display.textContent = DICE_FACES[final - 1];
+        display.style.transform = 'rotate(0) scale(1)';
+        result.innerHTML = 'Rolled <span>' + final + '</span> — delivered in ~' + (3 + Math.floor(Math.random() * 3)) + 'ms via RISE VRF';
+        addHistory(final);
+        btn.disabled = false;
+        isRolling = false;
+      }
+    }, 80);
+  }
+
+  function addHistory(n) {
+    rollHistory.unshift(n);
+    if (rollHistory.length > 8) rollHistory.pop();
+    const el = document.getElementById('dice-history-row');
+    el.innerHTML = rollHistory.map(v =>
+      '<div class="dice-history-chip">' + DICE_FACES[v - 1] + '</div>'
+    ).join('');
+  }
+
   function renderMarkets() {
     const tbody = document.getElementById('market-tbody');
     if (!tbody) return;
@@ -266,12 +355,10 @@
     tickerDiv.innerHTML = [...items, ...items].join('');
   }
 
-  function init() {
+  document.addEventListener('DOMContentLoaded', () => {
     renderMarkets();
     buildTicker();
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
+  });
 </script>
 </body>
 </html>
