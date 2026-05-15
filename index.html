@@ -86,12 +86,7 @@
   /* DICE GAME SECTION */
   #dice { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
- .dice-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
-  gap: 4rem;
-  align-items: center;
-}
+
  
   .dice-info h2 { font-size: clamp(2rem,4vw,3.2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: .8rem; line-height: 1.1; text-transform: uppercase; font-family: var(--font-heading); }
   .dice-info p { color: var(--text2); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400; }
@@ -147,15 +142,11 @@
 
 .dice-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
   gap: 4rem;
   align-items: center;
 }
 
-.dice-layout > div:last-child {
-  display: flex;
-  justify-content: flex-end;
-}
 
 @media (max-width: 768px) {
 
@@ -343,7 +334,7 @@
     Wallet connection via Browser Extension
   </div>
 </div>
-
+</div> <!-- CLOSE dice-info -->
      
       <div class="dice-card">
         <div class="dice-display" id="dice-display">🎲</div>
