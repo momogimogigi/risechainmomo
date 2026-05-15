@@ -301,6 +301,9 @@
     const btn = document.getElementById('roll-btn');
     const display = document.getElementById('dice-display');
     const result = document.getElementById('dice-result');
+const display =
+  document.getElementById('dice-display');
+   
     btn.disabled = true;
     result.innerHTML = 'Requesting VRF randomness...';
     let count = 0;
@@ -461,13 +464,56 @@ async function rollDice() {
     result.innerHTML =
       "TX Sent:<br>" + tx.hash;
 
-    // WAIT CONFIRM
-    await tx.wait();
+ await tx.wait();
+
+result.innerHTML =
+  "Transaction Confirmed ✅";
+
+
+// ANIMATION
+let count = 0;
+
+const interval = setInterval(() => {
+
+  const r =
+    Math.floor(Math.random() * 6);
+
+  display.textContent =
+    DICE_FACES[r];
+
+  display.style.transform =
+    count % 2 === 0
+      ? 'rotate(8deg) scale(1.1)'
+      : 'rotate(-8deg) scale(1.1)';
+
+  count++;
+
+  if (count > 15) {
+
+    clearInterval(interval);
+
+    // FINAL RANDOM
+    const final =
+      Math.floor(Math.random() * 6) + 1;
+
+    display.textContent =
+      DICE_FACES[final - 1];
+
+    display.style.transform =
+      'rotate(0) scale(1)';
 
     result.innerHTML =
-      "Transaction Confirmed ✅";
+      'Rolled <span>' +
+      final +
+      '</span>';
+
+    addHistory(final);
 
     btn.disabled = false;
+
+  }
+
+}, 80);
 
   } catch (err) {
 
